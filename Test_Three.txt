@@ -1,0 +1,114 @@
+3) Write a video player application with ‘Play’, ‘Forward’ , ‘Rewind’ functionalities. Please write pseudocode for this program and explain the design pattern you will use to develop these three functionalities
+
+Answer: I use proxy pattern for the solution.In proxy pattern, a class represents functionality of another class. This type of design pattern comes under structural pattern.
+
+In proxy pattern, we create object having original object to interface its functionality to outer world.
+
+
+Implementation:
+
+public interface Player {
+
+   void play();
+   void forward();
+   void Rewind();
+}
+
+
+public class VideoPlayer implements Player {
+
+   private String fileName;
+   VideoView myVideo;
+   MediaController mediaController;
+   String videoPath;
+   
+    private static final String DEBUG_TAG = "videoplayer";
+    
+    private ArrayList<HashMap<String, String>> songsList = new ArrayList<HashMap<String, String>>();
+    private int currentSongIndex=0;
+    
+    
+    
+    
+
+   
+   @Override
+   public void play() {
+   
+   try{
+   
+    if(myvideo!=null){
+    
+                 myvideo.stop();
+                myvideo.reset();
+                myvideo.release();
+                mvideo = null;
+                
+                
+                }
+    
+    myVideo=new VideoView();
+    mediaController=new MediaController();
+    Uri uri = Uri.parse(videoPath);
+	videoView.setVideoURI(uri);
+	videoView.setMediaController(mediaController);
+	mediaController.setAnchorView(videoView);
+	videoView.requestFocus();
+	videoView.start();
+    
+     }
+       catch( Exception e){
+  
+         Log.e(DEBUG_TAG, "Player failed", e);
+  
+          }
+   }
+   
+    @Override
+   public void forward() {
+   
+   
+            if (currentSongIndex < (songsList.size() - 1)) {
+               
+                currentSongIndex = currentSongIndex + 1;
+                
+                play();
+                
+            } else {
+             
+                currentSongIndex = 0;
+            }
+            
+   
+   }
+   
+   
+    @Override
+   public void rewind() {
+     if (currentSongIndex > 0) {
+                
+                currentSongIndex = currentSongIndex - 1;
+                
+                Play();
+            } else {
+                
+                currentSongIndex = songsList.size() - 1;
+            }
+   }
+
+  }
+  
+  
+  public class ProxyPatternDemo {
+	
+   public static void main(String[] args) {
+      Player player = new Videoplayer(this);
+
+     player.play();
+     
+     player.forward();
+     
+     player.rewind(); 	
+   }
+}
+  
