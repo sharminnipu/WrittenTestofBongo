@@ -1,0 +1,134 @@
+2)Explain the design pattern used in following:
+
+interface Vehicle {
+
+ int set_num_of_wheels()
+ int set_num_of_passengers()
+ boolean has_gas()
+}
+
+
+a) Explain how can you use the pattern to create car and plane class?
+
+To create car and plan class,i use factory design pattern.This type of design pattern comes under creational pattern as this pattern provides one of the best ways to create an object.
+In Factory pattern, we create object without exposing the creation logic to the client and refer to newly created object using a common interface.
+we will use Vehicle interface for multiple inheritance with car and place class.
+
+
+Implementation:
+
+ public class Car implements Vehicle{
+ 
+    @Override
+	public int set_num_of_wheels(){
+	
+	System.out.println("The number of car wheels is:");
+		return 3;
+		}
+	}
+	 @Override
+	public int set_num_of_passengers(){
+	System.out.println("The number of  car passengers is:");
+		return 10;
+		}
+	}
+	 @Override
+	public boolean has_gas(){
+	
+		return true;
+		}
+	}
+}
+
+
+
+ public class Plane implements Vehicle{
+ 
+ 
+ 
+    @Override
+ 	public int set_num_of_wheels(){
+ 	System.out.println("The number of Plane wheels is:");
+		return 8;
+		}
+	}
+	
+	 @Override
+	public int set_num_of_passengers(){
+	System.out.println("The number of Plane passengers is:");
+		return 200;
+		}
+	}
+	
+	 @Override
+	 public boolean has_gas(){
+	 
+		return false;
+		}
+	}
+}
+
+
+
+b)  Use a different design pattern for this solution.
+
+we can use different design pattern for this solution like Facade,Decorate design pattern.Decorator pattern allows a user to add new functionality to an existing object without altering its structure. This type of design pattern comes under structural pattern as this pattern acts as a wrapper to existing class.
+
+This pattern creates a decorator class which wraps the original class and provides additional functionality keeping class methods signature intact.
+
+Facade pattern hides the complexities of the system and provides an interface to the client using which the client can access the system. This type of design pattern comes under structural pattern as this pattern adds an interface to existing system to hide its complexities.
+
+Now i am using facade design  pattern ,I make a new vehicleMaker class where i use car and plane class.
+
+For Example:
+
+public class VehicleMaker{
+
+   private Vehicle car;
+   private Vehicle plane;
+  
+
+   public VehicleMaker() {
+      car = new Car();
+      plane = new Plane();
+      
+   }
+
+   public int wheelNumber(){
+     return  car.set_num_of_wheels();
+   }
+   public int passengerNumber(){
+      return car.set_num_of_passengers();
+   }
+   public boolean hasGas(){
+      return car.has_gas();
+   }
+   
+   
+    public int wheelNumberOfPalne(){
+     return  plane.set_num_of_wheels();
+   }
+   public int passengerNumbeOfPlaner(){
+      return plane.set_num_of_passengers();
+   }
+   public boolean hasGasOfPlane(){
+      return plane.has_gas();
+   }
+}
+
+
+public class FacadePatternDemo {
+   public static void main(String[] args) {
+      VehicleMaker vehicleMaker = new VehicleMaker();
+
+      vehicleMaker.wheelNumber();
+      vehicleMaker.passengerNumber();
+      vehicleMaker.hasGas();
+      vehicleMaker.wheelNumberOfPalne();
+      vehicleMaker.passengerNumbeOfPlaner();
+      vehicleMaker.hasGasOfPlane();
+      		
+   }
+}
+
+
